@@ -1,0 +1,47 @@
+[gd_scene load_steps=10 format=3 uid="uid://4dhsvy6yx7iy"]
+
+[ext_resource type="PackedScene" uid="uid://dsxes6op8lin6" path="res://db.glb" id="1_wtre5"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bw286"]
+animation = &"DB_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_27ax5"]
+animation = &"DB_Open"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i21d8"]
+animation = &"DB_BreakOpen"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_djsy4"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iojk3"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_un5dr"]
+"states/Break Open/node" = SubResource("AnimationNodeAnimation_i21d8")
+"states/Break Open/position" = Vector2(490.667, 99.5418)
+states/End/position = Vector2(697.333, 101.63)
+states/Start/position = Vector2(280, 104.23)
+transitions = ["Start", "Break Open", SubResource("AnimationNodeStateMachineTransition_djsy4"), "Break Open", "End", SubResource("AnimationNodeStateMachineTransition_iojk3")]
+graph_offset = Vector2(-70, 29)
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ikxxr"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_u7qf5"]
+states/DB_Idle/node = SubResource("AnimationNodeAnimation_bw286")
+states/DB_Idle/position = Vector2(600.667, 86.4444)
+states/DB_Open/node = SubResource("AnimationNodeAnimation_27ax5")
+states/DB_Open/position = Vector2(745.333, 167.333)
+states/Open/node = SubResource("AnimationNodeStateMachine_un5dr")
+states/Open/position = Vector2(526, 131.333)
+states/Start/position = Vector2(357.333, 91.1111)
+transitions = ["Start", "Open", SubResource("AnimationNodeStateMachineTransition_ikxxr")]
+graph_offset = Vector2(38, 8)
+
+[node name="db" instance=ExtResource("1_wtre5")]
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeStateMachine_u7qf5")
+anim_player = NodePath("../AnimationPlayer")
+active = true

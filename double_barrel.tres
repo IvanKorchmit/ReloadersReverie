@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Gun" load_steps=2 format=3 uid="uid://bpwaifxgo0784"]
+
+[ext_resource type="Script" path="res://gun.gd" id="1_qytrq"]
+
+[resource]
+script = ExtResource("1_qytrq")
+chamber_count = 2
+weapon_model = "res://db.glb"

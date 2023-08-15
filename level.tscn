@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjx8ca4upsg0q"]
+
+[ext_resource type="PackedScene" uid="uid://bm6hxgo7wifyb" path="res://player.tscn" id="1_hvosw"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_13br8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e6mbp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hme31"]
+
+[node name="Level" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_13br8")
+
+[node name="Player" parent="." instance=ExtResource("1_hvosw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39536, 0, 1.02759)
+
+[node name="OmniLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0871558, 0.996195, 0, -0.996195, 0.0871558, 0.251771, 3.52102, 0)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_e6mbp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+mesh = SubResource("BoxMesh_hme31")
